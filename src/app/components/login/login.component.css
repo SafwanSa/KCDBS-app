@@ -1,0 +1,21 @@
+.root-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 84%;
+}
+.card {
+  width: 30%;
+  padding: 2rem;
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+button {
+  margin-top: 1.2rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
