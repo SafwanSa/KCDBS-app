@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Club } from './../../../models/club';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-club',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClubComponent implements OnInit {
 
+  @Input() club: Club;
+
   constructor() { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
 }

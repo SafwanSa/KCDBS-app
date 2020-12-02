@@ -10,6 +10,7 @@ import { HomeComponent } from '../app/components/home/home.component';
 import { LoginComponent } from '../app/components/login/login.component';
 import { RegisterComponent } from '../app/components/register/register.component';
 import { ClubsComponent } from '../app/components/clubs/clubs.component';
+import { ClubComponent } from '../app/components/clubs/club/club.component';
 //
 import { AuthService } from '../app/services/auth.service';
 import { PathRequester } from './shared/pathRequester';
@@ -41,7 +42,8 @@ import { MatMenuModule } from '@angular/material/menu';
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    ClubsComponent
+    ClubsComponent,
+    ClubComponent
   ],
   imports: [
     BrowserModule,
