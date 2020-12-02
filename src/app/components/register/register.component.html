@@ -58,7 +58,19 @@
         </mat-form-field>
       </div>
       <mat-error *ngIf="serverMessage !== ''">{{ serverMessage }}</mat-error>
-
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="
+          email.invalid ||
+          password.invalid ||
+          firstName.invalid ||
+          lastName.invalid
+        "
+      >
+        Register
+      </button>
       <p>Already have an account? <a routerLink="/login">Login</a></p>
     </form>
   </mat-card>
