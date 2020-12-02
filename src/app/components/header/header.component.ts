@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { map } from 'rxjs/operators';
+import { User } from 'src/app/models/user';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-header',
@@ -7,9 +11,26 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  user: User;
+  isProcessing = true;
 
-  ngOnInit() {
+  constructor(public authService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    this.observeAuthUser();
+    console.log(this.user);
+  }
+
+  observeAuthUser(): void {
+    this.authService.user$.subscribe(user => {
+      this.user = user;
+      this.isProcessing = false;
+    });
+  }
+
+  async signOut(): Promise<void> {
+    const result = await this.authService.logout();
+    this.router.navigateByUrl('/');
   }
 
 }

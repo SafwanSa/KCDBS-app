@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PathRequester } from '../shared/pathRequester';
 import { User } from '../models/user';
+import { Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  user: User = JSON.parse(localStorage.getItem('currentUser')) as User | null;
+  user$: Observable<User> = of(JSON.parse(localStorage.getItem('currentUser')) as User | null);
 
   constructor(
     private http: HttpClient,
@@ -18,7 +19,7 @@ export class AuthService {
   }
 
   get isLoggedIn(): boolean {
-    return !!this.user;
+    return !!this.user$;
   }
 
   signIn(email: string, password: string): void {
@@ -28,13 +29,17 @@ export class AuthService {
     body = body.set('password', password);
     this.http.post<User>(this.path.getUser, body).subscribe(res => {
       if (res) {
-        this.user = res;
+        this.user$ = of(res);
         localStorage.setItem('currentUser', JSON.stringify(res));
         // localStorage.removeItem('currentUser');
       }
     }, err => {
       console.log('Error while getting the user. ' + err);
     });
+  }
+
+  logout(): void {
+    localStorage.removeItem('currentUser');
   }
 
 }

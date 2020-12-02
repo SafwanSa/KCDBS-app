@@ -1,0 +1,57 @@
+.nav-option {
+  margin: 0 1rem;
+  font-size: small;
+  color: white;
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.active {
+  /* color: #f53476; */
+  color: white;
+  opacity: 1;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.dummy {
+  height: 64px;
+}
+
+mat-toolbar {
+  box-shadow: 0px 0px 7px 0.6px black;
+  z-index: 1;
+  position: fixed;
+  top: 0%;
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  width: 100%;
+  border-bottom: 2px solid white;
+  opacity: 0;
+  transition: all 300ms;
+}
+
+.nav-option:hover .bar {
+  opacity: 1;
+}
+
+#blog-name {
+  color: white;
+}
+
+#blog-name span {
+  color: #f53476;
+}
+
+nav {
+  display: flex;
+  justify-items: center;
+}
