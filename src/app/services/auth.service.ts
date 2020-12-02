@@ -8,12 +8,17 @@ import { User } from '../models/user';
 })
 export class AuthService {
 
-  user: User;
+  user: User = JSON.parse(localStorage.getItem('currentUser')) as User | null;
 
   constructor(
     private http: HttpClient,
     private path: PathRequester
   ) {
+
+  }
+
+  get isLoggedIn(): boolean {
+    return !!this.user;
   }
 
   signIn(email: string, password: string): void {
@@ -24,11 +29,11 @@ export class AuthService {
     this.http.post<User>(this.path.getUser, body).subscribe(res => {
       if (res) {
         this.user = res;
-        // localStorage.setItem('currentUser', JSON.stringify(res));
+        localStorage.setItem('currentUser', JSON.stringify(res));
+        // localStorage.removeItem('currentUser');
       }
-      console.log(res);
     }, err => {
-      console.log(err);
+      console.log('Error while getting the user. ' + err);
     });
   }
 
