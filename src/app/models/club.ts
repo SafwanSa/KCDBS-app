@@ -9,5 +9,4 @@ export class Club {
   phone?: string;
   description: string;
   department?: Department;
-
 }
