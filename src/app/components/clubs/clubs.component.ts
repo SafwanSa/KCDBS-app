@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClubService } from '../../services/club.service';
 
 @Component({
   selector: 'app-clubs',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClubsComponent implements OnInit {
 
-  constructor() { }
+  constructor(private clubService: ClubService) { }
 
   ngOnInit() {
   }
