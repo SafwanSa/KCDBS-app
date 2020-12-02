@@ -1,0 +1,8 @@
+#addClub {
+  position: fixed;
+  top: 90%;
+  left: 90%;
+  padding: 1rem 1rem;
+  border-radius: 5px;
+  font-size: large;
+}

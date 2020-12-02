@@ -1,0 +1,92 @@
+<div class="root-container">
+  <mat-card class="card">
+    <mat-card-title class="card-title">Welcome Back</mat-card-title>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="email">
+        <mat-form-field appearance="legacy">
+          <mat-label>Name</mat-label>
+          <input
+            matInput
+            placeholder="Name"
+            autocomplete="off"
+            formControlName="name"
+            required
+          />
+          <mat-error *ngIf="name.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="email">
+        <mat-form-field appearance="legacy">
+          <mat-label>Description</mat-label>
+          <input
+            matInput
+            placeholder="Description"
+            autocomplete="off"
+            formControlName="description"
+            required
+          />
+          <mat-error *ngIf="name.invalid">{{ getErrorMessage() }}</mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="email">
+        <mat-form-field appearance="legacy">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            placeholder="Email"
+            autocomplete="off"
+            formControlName="email"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="email">
+        <mat-form-field appearance="legacy">
+          <mat-label>Phone</mat-label>
+          <input
+            matInput
+            placeholder="Phone"
+            autocomplete="off"
+            formControlName="phone"
+          />
+        </mat-form-field>
+      </div>
+
+      <div class="email">
+        <mat-form-field appearance="legacy">
+          <mat-label>Address</mat-label>
+          <input
+            matInput
+            placeholder="Address"
+            autocomplete="off"
+            formControlName="address"
+          />
+        </mat-form-field>
+      </div>
+
+      <mat-form-field appearance="fill">
+        <mat-label>Select an option</mat-label>
+        <mat-select formControlName="departmentID">
+          <mat-option>None</mat-option>
+          <mat-option
+            *ngFor="let department of departments"
+            [value]="department.id"
+            >{{ department.name }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+
+      <mat-error *ngIf="serverMessage !== ''">{{ serverMessage }}</mat-error>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        [disabled]="description.invalid || name.invalid"
+      >
+        Login
+      </button>
+    </form>
+  </mat-card>
+</div>

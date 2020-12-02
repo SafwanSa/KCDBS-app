@@ -1,3 +1,4 @@
+import { AddClubComponent } from './components/addClub/addClub.component';
 import { ClubViewComponent } from './components/clubView/clubView.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -45,7 +46,8 @@ import { MatMenuModule } from '@angular/material/menu';
     RegisterComponent,
     ClubsComponent,
     ClubComponent,
-    ClubViewComponent
+    ClubViewComponent,
+    AddClubComponent
   ],
   imports: [
     BrowserModule,
