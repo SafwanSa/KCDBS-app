@@ -16,13 +16,19 @@ export class AuthService {
   ) {
   }
 
-  signIn(email: string, password: string) {
-    const myheader = new HttpHeaders().set('Content-Type', 'application/json');
+  signIn(email: string, password: string): void {
+    // const myheader = new HttpHeaders().set('Content-Type', 'application/json');
     let body = new HttpParams();
     body = body.set('email', email);
     body = body.set('password', password);
     this.http.post<User>(this.path.getUser, body).subscribe(res => {
-      if (res) { this.user = res; }
+      if (res) {
+        this.user = res;
+        // localStorage.setItem('currentUser', JSON.stringify(res));
+      }
+      console.log(res);
+    }, err => {
+      console.log(err);
     });
   }
 
