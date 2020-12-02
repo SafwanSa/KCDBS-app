@@ -26,7 +26,7 @@ export class AuthService {
     return !!this.user$;
   }
 
-  signIn(email: string, password: string) {
+  signIn(email: string, password: string): Observable<User> {
     // const myheader = new HttpHeaders().set('Content-Type', 'application/json');
     let body = new HttpParams();
     body = body.set('email', email);
