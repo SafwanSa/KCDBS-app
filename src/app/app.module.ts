@@ -8,6 +8,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from '../app/components/header/header.component';
 import { HomeComponent } from '../app/components/home/home.component';
 import { LoginComponent } from '../app/components/login/login.component';
+import { RegisterComponent } from '../app/components/register/register.component';
 //
 import { AuthService } from '../app/services/auth.service';
 import { PathRequester } from './shared/pathRequester';
@@ -35,7 +36,8 @@ import { MatMenuModule } from '@angular/material/menu';
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
