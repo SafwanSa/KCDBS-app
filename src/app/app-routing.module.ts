@@ -1,3 +1,4 @@
+import { ClubViewComponent } from './components/clubView/clubView.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from '../app/components/home/home.component';
@@ -9,6 +10,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'clubs', component: ClubsComponent },
+  { path: 'club/:id', component: ClubViewComponent },
   { path: '', component: HomeComponent }
 ];
 
