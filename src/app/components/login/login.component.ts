@@ -40,8 +40,10 @@ export class LoginComponent implements OnInit {
   onSubmit(): void {
     this.loading = true;
     this.authService.signIn(this.email.value, this.password.value).subscribe(user => {
+      if (user) {
+        this.router.navigateByUrl('/');
+      }
       this.loading = false;
-      this.router.navigateByUrl('/');
     }, error => {
       this.serverMessage = error;
       this.loading = false;
