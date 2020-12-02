@@ -1,3 +1,11 @@
-<p>
-  clubs works!
-</p>
+<div class="container mt-4">
+  <div class="row">
+    <div *ngFor="let club of clubs" class="col-auto mb-3">
+      <p>{{ club.name }}</p>
+      <p>{{ club.description }}</p>
+      <p>{{ club.email }}</p>
+      <p>{{ club.phone }}</p>
+      <p>{{ club.status }}</p>
+    </div>
+  </div>
+</div>

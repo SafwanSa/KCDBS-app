@@ -9,9 +9,12 @@ import { HeaderComponent } from '../app/components/header/header.component';
 import { HomeComponent } from '../app/components/home/home.component';
 import { LoginComponent } from '../app/components/login/login.component';
 import { RegisterComponent } from '../app/components/register/register.component';
+import { ClubsComponent } from '../app/components/clubs/clubs.component';
 //
 import { AuthService } from '../app/services/auth.service';
 import { PathRequester } from './shared/pathRequester';
+import { ClubService } from './services/club.service';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // Angular Material
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -37,7 +40,8 @@ import { MatMenuModule } from '@angular/material/menu';
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    RegisterComponent
+    RegisterComponent,
+    ClubsComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +66,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatMenuModule
   ],
-  providers: [AuthService, PathRequester],
+  providers: [AuthService, PathRequester, ClubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
