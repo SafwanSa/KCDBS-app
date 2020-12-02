@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PathRequester } from '../shared/pathRequester';
 import { User } from '../models/user';
 import { BehaviorSubject, Observable, of } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -25,19 +26,22 @@ export class AuthService {
     return !!this.user$;
   }
 
-  signIn(email: string, password: string): void {
+  signIn(email: string, password: string) {
     // const myheader = new HttpHeaders().set('Content-Type', 'application/json');
     let body = new HttpParams();
     body = body.set('email', email);
     body = body.set('password', password);
-    this.http.post<User>(this.path.getUser, body).subscribe(user => {
+    return this.http.post<User>(this.path.getUser, body).pipe(map(user => {
       if (user) {
         localStorage.setItem('currentUser', JSON.stringify(user));
         this.currentUserSubject.next(user);
+        return user;
       }
+      return null;
     }, err => {
       console.log('Error while getting the user. ' + err);
-    });
+      return null;
+    }));
   }
 
   logout(): void {
