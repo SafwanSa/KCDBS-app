@@ -40,6 +40,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem('currentUser');
+    this.user$ = of(null);
   }
 
 }

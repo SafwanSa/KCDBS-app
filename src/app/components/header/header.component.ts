@@ -28,8 +28,8 @@ export class HeaderComponent implements OnInit {
     });
   }
 
-  async signOut(): Promise<void> {
-    const result = await this.authService.logout();
+  signOut(): void {
+    this.authService.logout();
     this.router.navigateByUrl('/');
   }
 
