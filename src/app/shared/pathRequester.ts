@@ -2,7 +2,7 @@ enum FileRequest {
   getUser = 'getUser.php',
   getAllClubs = 'getAllClubs.php',
   getClub = 'getClub.php',
-  getAllDepartments = 'getAllDepartments'
+  getAllDepartments = 'getAllDepartments.php'
 }
 
 export class PathRequester {
