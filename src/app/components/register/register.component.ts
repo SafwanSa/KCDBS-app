@@ -60,9 +60,16 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  async onSubmit(): Promise<void> {
+  onSubmit(): void {
     this.loading = true;
-
-    this.loading = false;
+    this.authService.register(this.firstName.value, this.lastName.value, this.email.value, this.password.value).subscribe(user => {
+      if (user) {
+        this.router.navigateByUrl('/');
+      }
+      this.loading = false;
+    }, error => {
+      this.serverMessage = error;
+      this.loading = false;
+    });
   }
 }

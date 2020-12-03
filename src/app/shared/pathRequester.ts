@@ -3,7 +3,8 @@ enum FileRequest {
   getAllClubs = 'getAllClubs.php',
   getClub = 'getClub.php',
   getAllDepartments = 'getAllDepartments.php',
-  addClub = 'addClub.php'
+  addClub = 'addClub.php',
+  registerUser = 'registerUser.php'
 }
 
 export class PathRequester {
@@ -27,5 +28,9 @@ export class PathRequester {
 
   get addClub(): string {
     return this.basePath + FileRequest.addClub;
+  }
+
+  get registerUser(): string {
+    return this.basePath + FileRequest.registerUser;
   }
 }
