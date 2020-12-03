@@ -68,7 +68,15 @@ export class AddClubComponent implements OnInit {
   }
 
   onSubmit(): void {
-
+    const json = {
+      name: this.name.value,
+      description: this.description.value,
+      email: this.email.value === '' ? null : this.email.value,
+      phone: this.phone.value === '' ? null : this.phone.value,
+      address: this.address.value === '' ? null : this.address.value,
+      departmentID: this.departmentID.value === '' ? null : this.departmentID.value
+    };
+    this.clubService.addClub(json);
   }
 
 }

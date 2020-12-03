@@ -22,11 +22,16 @@ export class ClubService {
     return this.http.post<Club>(this.path.getClub, body);
   }
 
-  addClub(Club) {
+  addClub(ClubJSON): void {
     let body = new HttpParams();
-    // GET CLUB OBJECT AND PARSE IT TO JSON
-    body = body.set(club);
-    return this.http.post<Club>(this.path.getClub, body);
+    // tslint:disable-next-line:forin
+    for (const key in ClubJSON) {
+      const value = ClubJSON[key];
+      body = body.set(key, value + '');
+    }
+    this.http.post<Club>(this.path.addClub, body).subscribe(res => {
+      console.log(res);
+    });
   }
 
 }
