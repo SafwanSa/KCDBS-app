@@ -22,4 +22,11 @@ export class ClubService {
     return this.http.post<Club>(this.path.getClub, body);
   }
 
+  addClub(Club) {
+    let body = new HttpParams();
+    // GET CLUB OBJECT AND PARSE IT TO JSON
+    body = body.set(club);
+    return this.http.post<Club>(this.path.getClub, body);
+  }
+
 }
