@@ -67,9 +67,8 @@
       </div>
 
       <mat-form-field appearance="fill">
-        <mat-label>Select an option</mat-label>
+        <mat-label>Select a Department</mat-label>
         <mat-select formControlName="departmentID">
-          <mat-option>None</mat-option>
           <mat-option
             *ngFor="let department of departments"
             [value]="department.id"

@@ -1,8 +1,11 @@
+import { DepartmentService } from './../../services/department.service';
+import { Department } from './../../models/department';
 import { ClubService } from './../../services/club.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-addClub',
   templateUrl: './addClub.component.html',
   styleUrls: ['./addClub.component.css']
@@ -12,8 +15,13 @@ export class AddClubComponent implements OnInit {
   form: FormGroup;
   loading = false;
   serverMessage = '';
+  departments: [Department];
 
-  constructor(private fb: FormBuilder, private clubService: ClubService) { }
+  constructor(
+    private fb: FormBuilder,
+    private clubService: ClubService,
+    private departmentService: DepartmentService
+  ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -24,6 +32,8 @@ export class AddClubComponent implements OnInit {
       description: ['', [Validators.required]],
       departmentID: ['']
     });
+
+    this.departmentService.getAllDepartments$().subscribe(departments => this.departments = departments);
   }
 
   get name(): any {
