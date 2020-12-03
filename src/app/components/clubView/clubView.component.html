@@ -8,3 +8,22 @@
   <p>{{ club?.department.phone }}</p>
   <!-- <p>{{ club.projects?.length }}</p> -->
 </mat-card>
+
+<mat-card *ngFor="let project of projects">
+  <p>{{ project.name }}</p>
+  <p>{{ project.description }}</p>
+  <p>{{ project.type }}</p>
+  <p>{{ project.startDate }}</p>
+  <p>{{ project.endDate }}</p>
+  <p>{{ project.status }}</p>
+  <div *ngFor="let resource of project.resources" style="background: red">
+    <p>{{ resource.name }}</p>
+    <p>{{ resource.type }}</p>
+    <p>{{ resource.description }}</p>
+    <p>{{ resource.status }}</p>
+    <p>{{ resource.from }}</p>
+    <p>{{ resource.to }}</p>
+  </div>
+</mat-card>
+
+<mat-error *ngIf="!!!projects">There is no projects in this club</mat-error>

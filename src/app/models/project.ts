@@ -1,3 +1,4 @@
+import { Resource } from './resource';
 export class Project {
   id: number;
   name: string;
@@ -5,6 +6,7 @@ export class Project {
   // clubID: number;
   description: number;
   startDate: Date;
-  endDate: Date;
+  endDate?: Date;
   status: string;
+  resources: [Resource];
 }

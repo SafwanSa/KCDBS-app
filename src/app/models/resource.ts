@@ -4,4 +4,6 @@ export class Resource {
   type: string;
   description: string;
   status: string;
+  from: Date;
+  to?: Date;
 }
