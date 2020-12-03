@@ -26,7 +26,8 @@ export class RegisterComponent implements OnInit {
       firstName: ['', [Validators.required]],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
+      phone: ['']
     });
   }
 
@@ -46,6 +47,10 @@ export class RegisterComponent implements OnInit {
     return this.form.get('password');
   }
 
+  get phone(): any {
+    return this.form.get('phone');
+  }
+
   getErrorMessage(): string {
     if (this.password.hasError('minlength')) {
       return 'Password must be at least 6 characters';
@@ -62,7 +67,9 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.loading = true;
-    this.authService.register(this.firstName.value, this.lastName.value, this.email.value, this.password.value).subscribe(user => {
+    this.authService.register(this.firstName.value, this.lastName.value, this.email.value, this.password.value,
+      this.phone.value === '' ? null : this.phone.value
+    ).subscribe(user => {
       if (user) {
         this.router.navigateByUrl('/');
       }

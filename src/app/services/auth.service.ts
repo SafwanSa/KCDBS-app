@@ -51,12 +51,13 @@ export class AuthService {
   }
 
 
-  register(firstName: string, lastName: string, email: string, password: string): Observable<User> {
+  register(firstName: string, lastName: string, email: string, password: string, phone: string): Observable<User> {
     let body = new HttpParams();
     body = body.set('email', email);
     body = body.set('password', password);
     body = body.set('firstName', firstName);
     body = body.set('lastName', lastName);
+    body = body.set('phone', phone);
     return this.http.post<User>(this.path.registerUser, body).pipe(map(user => {
       if (user) {
         localStorage.setItem('currentUser', JSON.stringify(user));
