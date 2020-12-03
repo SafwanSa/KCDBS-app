@@ -22,15 +22,17 @@ export class ClubService {
     return this.http.post<Club>(this.path.getClub, body);
   }
 
-  addClub(ClubJSON): void {
+  addClub(clubJSON: any): void {
     let body = new HttpParams();
     // tslint:disable-next-line:forin
-    for (const key in ClubJSON) {
-      const value = ClubJSON[key];
+    for (const key in clubJSON) {
+      const value = clubJSON[key];
       body = body.set(key, value + '');
     }
-    this.http.post<Club>(this.path.addClub, body).subscribe(res => {
-      console.log(res);
+    this.http.post(this.path.addClub, body).subscribe(res => {
+      if (res === 201) {
+        console.log('Club has been added successfully');
+      }
     });
   }
 

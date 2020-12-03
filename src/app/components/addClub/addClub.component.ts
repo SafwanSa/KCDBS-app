@@ -26,7 +26,6 @@ export class AddClubComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.fb.group({
       name: ['', [Validators.required]],
-      email: [''],
       address: [''],
       phone: [''],
       description: ['', [Validators.required]],
@@ -38,10 +37,6 @@ export class AddClubComponent implements OnInit {
 
   get name(): any {
     return this.form.get('name');
-  }
-
-  get email(): any {
-    return this.form.get('email');
   }
 
   get address(): any {
@@ -71,7 +66,6 @@ export class AddClubComponent implements OnInit {
     const json = {
       name: this.name.value,
       description: this.description.value,
-      email: this.email.value === '' ? null : this.email.value,
       phone: this.phone.value === '' ? null : this.phone.value,
       address: this.address.value === '' ? null : this.address.value,
       departmentID: this.departmentID.value === '' ? null : this.departmentID.value
