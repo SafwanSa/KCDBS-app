@@ -9,7 +9,7 @@ export class Club {
   phone?: string;
   description: string;
   department?: Department;
-  projects?: [Project];
+  // projects?: [Project];
 
   // constructor(
   //   name: string = '',
