@@ -26,6 +26,8 @@ export class ClubViewComponent implements OnInit {
         return;
       }
       this.club = club;
+      console.log(club);
+
     });
   }
 

@@ -1,8 +1,8 @@
 export class Project {
   id: number;
   name: string;
-  projectType: string;
-  clubID: number;
+  type: string;
+  // clubID: number;
   description: number;
   startDate: Date;
   endDate: Date;
