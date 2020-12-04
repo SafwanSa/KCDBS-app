@@ -1,3 +1,6 @@
+import { DepartmentService } from './services/department.service';
+import { ProjectService } from './services/project.service';
+import { AddProjectComponent } from './components/addProject/addProject.component';
 import { AddClubComponent } from './components/addClub/addClub.component';
 import { ClubViewComponent } from './components/clubView/clubView.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -47,7 +50,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ClubsComponent,
     ClubComponent,
     ClubViewComponent,
-    AddClubComponent
+    AddClubComponent,
+    AddProjectComponent
   ],
   imports: [
     BrowserModule,
@@ -72,7 +76,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatMenuModule
   ],
-  providers: [AuthService, PathRequester, ClubService],
+  providers: [AuthService, PathRequester, ClubService, ProjectService, DepartmentService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
