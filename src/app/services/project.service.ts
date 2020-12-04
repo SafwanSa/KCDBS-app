@@ -1,4 +1,4 @@
-import { Project } from './../models/project';
+import { Project, ProjectType } from './../models/project';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { PathRequester } from '../shared/pathRequester';
@@ -23,6 +23,10 @@ export class ProjectService {
     body = body.set('id', projectID);
     body = body.set('status', newStatus);
     return this.http.post<Project>(this.path.getChangeProjectStatus, body);
+  }
+
+  getAllProjectTypes$(): Observable<[ProjectType]> {
+    return this.http.post<[ProjectType]>(this.path.getAllProjectTypes, {});
   }
 
 }

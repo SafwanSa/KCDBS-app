@@ -1,6 +1,6 @@
 import { Resource } from './resource';
 
-export enum ProjectType {
+export enum ProjectStatusType {
   Started = 'Started',
   Completed = 'Completed',
   Stopped = 'Stopped',
@@ -9,9 +9,9 @@ export enum ProjectType {
 }
 
 // tslint:disable-next-line:no-namespace
-export namespace ProjectType {
+export namespace ProjectStatusType {
   export function values(): string[] {
-    return Object.keys(ProjectType).filter(
+    return Object.keys(ProjectStatusType).filter(
       (type) => isNaN(type as any) && type !== 'values'
     );
   }
@@ -28,4 +28,10 @@ export class Project {
   endDate?: Date;
   status: string;
   resources: [Resource];
+}
+
+export class ProjectType {
+  id: number;
+  name: string;
+  description: string;
 }
