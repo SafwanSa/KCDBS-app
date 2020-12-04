@@ -18,4 +18,11 @@ export class ProjectService {
     return this.http.post<[Project]>(this.path.getClubProjects, body);
   }
 
+  changeProjectStatus$(projectID: string, newStatus: string): Observable<Project> {
+    let body = new HttpParams();
+    body = body.set('id', projectID);
+    body = body.set('status', newStatus);
+    return this.http.post<Project>(this.path.getChangeProjectStatus, body);
+  }
+
 }

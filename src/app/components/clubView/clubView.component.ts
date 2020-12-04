@@ -1,5 +1,5 @@
 import { ProjectService } from './../../services/project.service';
-import { Project } from './../../models/project';
+import { Project, ProjectType } from './../../models/project';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Club } from './../../models/club';
 import { ClubService } from './../../services/club.service';
@@ -15,6 +15,8 @@ export class ClubViewComponent implements OnInit {
 
   club?: Club;
   projects = [];
+  projectTypes = ProjectType.values();
+  selectedType = '';
 
   constructor(
     private clubService: ClubService,
@@ -35,6 +37,12 @@ export class ClubViewComponent implements OnInit {
       this.club = clubAndProjects[0];
       this.projects = clubAndProjects[1];
       if (this.projects.length === 0) { this.projects = null; }
+    });
+  }
+
+  onSelect(projectID: string, status: string): void {
+    this.projectService.changeProjectStatus$(projectID, status).subscribe(() => {
+      this.selectedType = status;
     });
   }
 

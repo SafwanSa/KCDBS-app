@@ -10,12 +10,20 @@
 </mat-card>
 
 <mat-card *ngFor="let project of projects">
+  <button
+    (click)="onSelect(project.id, type)"
+    mat-raised-button
+    color="primary"
+    *ngFor="let type of projectTypes"
+  >
+    {{ type }}
+  </button>
   <p>{{ project.name }}</p>
   <p>{{ project.description }}</p>
   <p>{{ project.type }}</p>
   <p>{{ project.startDate }}</p>
   <p>{{ project.endDate }}</p>
-  <p>{{ project.status }}</p>
+  <p>{{ selectedType === "" ? project.status : selectedType }}</p>
   <div *ngFor="let resource of project.resources" style="background: red">
     <p>{{ resource.name }}</p>
     <p>{{ resource.type }}</p>
