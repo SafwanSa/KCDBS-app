@@ -8,7 +8,9 @@ enum FileRequest {
   getClubProjects = 'getClubProjects.php',
   changeProjectStatus = 'changeProjectStatus.php',
   getAllProjectTypes = 'getAllProjectTypes.php',
-  addProject = 'addProject.php'
+  addProject = 'addProject.php',
+  getAllUsers = 'getAllUsers.php',
+  getClubUsers = 'getClubUsers.php'
 }
 
 export class PathRequester {
@@ -52,5 +54,13 @@ export class PathRequester {
 
   get addProject(): string {
     return this.basePath + FileRequest.addProject;
+  }
+
+  get getAllUsers(): string {
+    return this.basePath + FileRequest.getAllUsers;
+  }
+
+  get getClubUsers(): string {
+    return this.basePath + FileRequest.getClubUsers;
   }
 }

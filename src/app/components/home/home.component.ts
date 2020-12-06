@@ -1,3 +1,4 @@
+import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ClubService } from '../../services/club.service';
 @Component({
@@ -7,10 +8,12 @@ import { ClubService } from '../../services/club.service';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+  constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-
+    // this.userService.getClubUsers$().subscribe(users => {
+    //   console.log(users);
+    // });
   }
 
 }
