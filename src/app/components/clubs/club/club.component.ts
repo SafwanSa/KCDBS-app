@@ -13,6 +13,8 @@ export class ClubComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
+    // console.log(this.club.department);
+
   }
 
 }
