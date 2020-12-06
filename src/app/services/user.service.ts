@@ -16,10 +16,10 @@ export class UserService {
     return this.http.post<[User]>(this.path.getAllUsers, {});
   }
 
-  getClubUsers$(clubID: string): Observable<[User]> {
+  getClubMembers$(clubID: string): Observable<[User]> {
     let body = new HttpParams();
     body = body.set('clubID', clubID);
-    return this.http.post<[User]>(this.path.getClubUsers, body);
+    return this.http.post<[User]>(this.path.getClubMembers, body);
   }
 
 }

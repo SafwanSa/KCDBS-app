@@ -10,7 +10,7 @@ enum FileRequest {
   getAllProjectTypes = 'getAllProjectTypes.php',
   addProject = 'addProject.php',
   getAllUsers = 'getAllUsers.php',
-  getClubUsers = 'getClubUsers.php'
+  getClubMembers = 'getClubMembers.php'
 }
 
 export class PathRequester {
@@ -60,7 +60,7 @@ export class PathRequester {
     return this.basePath + FileRequest.getAllUsers;
   }
 
-  get getClubUsers(): string {
-    return this.basePath + FileRequest.getClubUsers;
+  get getClubMembers(): string {
+    return this.basePath + FileRequest.getClubMembers;
   }
 }
