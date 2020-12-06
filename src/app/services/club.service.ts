@@ -36,8 +36,33 @@ export class ClubService {
     });
   }
 
-  addMember(userID, clubID): void {
+  addMember(userID: string, clubID: string): void {
+    let body = new HttpParams();
+    body = body.set('userID', userID);
+    body = body.set('clubID', clubID);
+    body = body.set('fromDate', this.getDate(new Date()));
+    this.http.post(this.path.addMemberToClub, body).subscribe(res => {
+      if (res === 201) {
+        console.log('Club has been added successfully');
+      }
+    });
+  }
 
+  getDate(d: Date): string {
+    // tslint:disable-next-line:variable-name
+    const date_ob = d;
+
+    // adjust 0 before single digit date
+    const date = ('0' + date_ob.getDate()).slice(-2);
+
+    // current month
+    const month = ('0' + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    const year = date_ob.getFullYear();
+
+    // prints date in YYYY-MM-DD format
+    return (year + '-' + month + '-' + date);
   }
 
 }

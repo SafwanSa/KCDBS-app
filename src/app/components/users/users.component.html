@@ -17,6 +17,7 @@
       mat-raised-button
       color="warn"
       (click)="addStudent()"
+      [disabled]="email.invalid || clubID.invalid"
     >
       Move
     </button>

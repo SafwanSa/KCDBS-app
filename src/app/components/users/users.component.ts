@@ -27,8 +27,8 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      email: ['', []],
-      clubID: ['', []]
+      email: ['', [Validators.required]],
+      clubID: ['', [Validators.required]]
     });
 
     this.userService.getAllUsers$().subscribe(users => {
@@ -77,7 +77,7 @@ export class UsersComponent implements OnInit {
   }
 
   addStudent(): void {
-
+    this.clubService.addMember(this.userID, this.clubID.value);
   }
 
 }
