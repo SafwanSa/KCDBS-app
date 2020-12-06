@@ -25,7 +25,7 @@ export class UsersComponent implements OnInit {
     private clubService: ClubService
   ) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.form = this.fb.group({
       email: ['', [Validators.required]],
       clubID: ['', [Validators.required]]

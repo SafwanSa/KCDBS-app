@@ -1,3 +1,5 @@
+import { UserService } from './../../services/user.service';
+import { User } from './../../models/user';
 import { ProjectService } from './../../services/project.service';
 import { Project, ProjectStatusType } from './../../models/project';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -17,12 +19,14 @@ export class ClubViewComponent implements OnInit {
   projects = [];
   projectStatusTypes = ProjectStatusType.values();
   selectedStatus = '';
+  members: [User];
 
   constructor(
     private clubService: ClubService,
     private route: ActivatedRoute,
     private router: Router,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private userService: UserService
   ) { }
 
   ngOnInit(): void {
@@ -37,6 +41,9 @@ export class ClubViewComponent implements OnInit {
       this.club = clubAndProjects[0];
       this.projects = clubAndProjects[1];
       if (this.projects.length === 0) { this.projects = null; }
+      this.userService.getClubMembers$(this.club?.id + '').subscribe(members => {
+        this.members = members;
+      });
     });
   }
 

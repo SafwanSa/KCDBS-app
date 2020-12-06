@@ -37,3 +37,42 @@
 <mat-error *ngIf="!!!projects">There is no projects in this club</mat-error>
 
 <app-addProject [club]="club"></app-addProject>
+
+<mat-card class="members">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col"></th>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Email</th>
+        <th scope="col">Student Status</th>
+        <th scope="col">Membership Status</th>
+        <th scope="col">From</th>
+        <th scope="col">To</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of members; index as i">
+        <td class="action">
+          <!-- <button
+            (click)="onSelect(user)"
+            mat-raised-button
+            [color]="selectedEmail === user.email ? 'primary' : 'accent'"
+          >
+            {{ selectedEmail === user.email ? "Selected" : "Select" }}
+          </button> -->
+        </td>
+        <th scope="row">{{ i + 1 }}</th>
+        <td>
+          {{ user.firstName + " " + user.lastName }}
+        </td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.status }}</td>
+        <td>{{ user.membershipStatus }}</td>
+        <td>{{ user.from }}</td>
+        <td>{{ !!!user.to ? "Present" : user.to }}</td>
+      </tr>
+    </tbody>
+  </table>
+</mat-card>
