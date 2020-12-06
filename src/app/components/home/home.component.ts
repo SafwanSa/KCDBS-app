@@ -11,9 +11,9 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
-    this.userService.getClubMembers$('2').subscribe(users => {
-      console.log(users);
-    });
+    // this.userService.getClubAdmins$('2').subscribe(users => {
+    //   console.log(users);
+    // });
   }
 
 }

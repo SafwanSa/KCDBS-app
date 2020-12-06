@@ -22,4 +22,10 @@ export class UserService {
     return this.http.post<[User]>(this.path.getClubMembers, body);
   }
 
+  getClubAdmins$(clubID: string): Observable<[User]> {
+    let body = new HttpParams();
+    body = body.set('clubID', clubID);
+    return this.http.post<[User]>(this.path.getClubAdmins, body);
+  }
+
 }
