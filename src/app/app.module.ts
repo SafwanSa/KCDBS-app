@@ -1,3 +1,5 @@
+import { UsersComponent } from './components/users/users.component';
+import { UserService } from './services/user.service';
 import { DepartmentService } from './services/department.service';
 import { ProjectService } from './services/project.service';
 import { AddProjectComponent } from './components/addProject/addProject.component';
@@ -51,7 +53,8 @@ import { MatMenuModule } from '@angular/material/menu';
     ClubComponent,
     ClubViewComponent,
     AddClubComponent,
-    AddProjectComponent
+    AddProjectComponent,
+    UsersComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,7 @@ import { MatMenuModule } from '@angular/material/menu';
     MatToolbarModule,
     MatMenuModule
   ],
-  providers: [AuthService, PathRequester, ClubService, ProjectService, DepartmentService],
+  providers: [AuthService, PathRequester, ClubService, ProjectService, DepartmentService, UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
