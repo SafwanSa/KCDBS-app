@@ -1,0 +1,31 @@
+.root-container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 2rem;
+}
+
+#search {
+  width: 30%;
+  margin: 1rem;
+  padding: 0.2rem 0.5rem;
+}
+
+input,
+select {
+  margin: 1rem;
+  padding: 0.2rem 0.5rem;
+}
+
+mat-card {
+  background: white;
+  padding: 0;
+}
+
+button {
+  width: 50%;
+}
+
+.action {
+  align-items: center;
+  text-align: center;
+}
