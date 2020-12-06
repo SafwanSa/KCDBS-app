@@ -29,3 +29,7 @@ button {
   align-items: center;
   text-align: center;
 }
+
+.add-btn {
+  width: 10%;
+}

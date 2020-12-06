@@ -16,6 +16,8 @@ export class UsersComponent implements OnInit {
   term = '';
   form: FormGroup;
   clubs: [Club];
+  selectedEmail: string;
+  userID: string;
 
   constructor(
     private userService: UserService,
@@ -25,7 +27,7 @@ export class UsersComponent implements OnInit {
 
   ngOnInit() {
     this.form = this.fb.group({
-      userID: ['', []],
+      email: ['', []],
       clubID: ['', []]
     });
 
@@ -46,8 +48,8 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  get userID(): any {
-    return this.form.get('userID');
+  get email(): any {
+    return this.form.get('email');
   }
 
   get clubID(): any {
@@ -56,9 +58,26 @@ export class UsersComponent implements OnInit {
 
   getErrorMessage(): string {
     if (this.clubID.hasError('required')
-      || this.userID.hasError('required')) {
+      || this.email.hasError('required')) {
       return 'You must enter a value';
     }
+  }
+
+  onSelect(user: User): void {
+    if (this.selectedEmail === user.email) {
+      this.selectedEmail = '';
+      this.email.setValue('');
+      this.userID = '';
+    } else {
+      this.email.setValue(user.email);
+      this.selectedEmail = user.email;
+      this.userID = user.id + '';
+    }
+
+  }
+
+  addStudent(): void {
+
   }
 
 }

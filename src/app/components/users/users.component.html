@@ -3,7 +3,7 @@
 
   <form [formGroup]="form">
     <label for="">Move</label
-    ><input type="text" placeholder="User" formControlName="userID" disabled />
+    ><input type="text" placeholder="User" formControlName="email" disabled />
     <label for="">to</label>
 
     <select formControlName="clubID">
@@ -11,6 +11,15 @@
         {{ club.name }}
       </option>
     </select>
+
+    <button
+      class="add-btn"
+      mat-raised-button
+      color="warn"
+      (click)="addStudent()"
+    >
+      Move
+    </button>
   </form>
 
   <mat-card>
@@ -28,7 +37,13 @@
       <tbody>
         <tr *ngFor="let user of filteredUsers; index as i">
           <td class="action">
-            <button mat-raised-button color="accent">Select</button>
+            <button
+              (click)="onSelect(user)"
+              mat-raised-button
+              [color]="selectedEmail === user.email ? 'primary' : 'accent'"
+            >
+              {{ selectedEmail === user.email ? "Selected" : "Select" }}
+            </button>
           </td>
           <th scope="row">{{ i + 1 }}</th>
           <td>

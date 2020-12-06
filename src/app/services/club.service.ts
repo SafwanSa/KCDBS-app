@@ -36,4 +36,8 @@ export class ClubService {
     });
   }
 
+  addMember(userID, clubID): void {
+
+  }
+
 }
