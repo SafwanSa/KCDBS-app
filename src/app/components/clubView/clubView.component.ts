@@ -20,6 +20,7 @@ export class ClubViewComponent implements OnInit {
   projectStatusTypes = ProjectStatusType.values();
   selectedStatus = '';
   members: [User];
+  admins: [User];
 
   constructor(
     private clubService: ClubService,
@@ -43,6 +44,10 @@ export class ClubViewComponent implements OnInit {
       if (this.projects.length === 0) { this.projects = null; }
       this.userService.getClubMembers$(this.club?.id + '').subscribe(members => {
         this.members = members;
+      });
+
+      this.userService.getClubAdmins$(this.club?.id + '').subscribe(admins => {
+        this.admins = admins;
       });
     });
   }
