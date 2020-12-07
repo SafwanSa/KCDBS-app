@@ -58,4 +58,13 @@ export class ClubViewComponent implements OnInit {
     });
   }
 
+  approve(user: User): void {
+    this.clubService.approveMember(user.id + '', this.club?.id + '').subscribe(res => {
+      if (res === 201) {
+        console.log('Student has enrolled successfully');
+        user.membershipStatus = 'Enrolled';
+      }
+    });
+  }
+
 }

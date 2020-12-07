@@ -62,6 +62,14 @@ export class ClubService {
     });
   }
 
+  approveMember(userID: string, clubID: string): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('userID', userID);
+    body = body.set('clubID', clubID);
+    body = body.set('fromDate', this.getDate(new Date()));
+    return this.http.post(this.path.approveMember, body);
+  }
+
   getDate(d: Date): string {
     // tslint:disable-next-line:variable-name
     const date_ob = d;

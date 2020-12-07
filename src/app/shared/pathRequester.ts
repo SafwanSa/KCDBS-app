@@ -13,7 +13,8 @@ enum FileRequest {
   getClubMembers = 'getClubMembers.php',
   getClubAdmins = 'getClubAdmins.php',
   addMemberToClub = 'addMemberToClub.php',
-  requestEnrollment = 'requestEnrollment.php'
+  requestEnrollment = 'requestEnrollment.php',
+  approveMember = 'approveMember.php'
 }
 
 export class PathRequester {
@@ -79,9 +80,9 @@ export class PathRequester {
     return this.basePath + FileRequest.requestEnrollment;
   }
 
-  // get requestEnrollment(): string {
-  //   return this.basePath + FileRequest.requestEnrollment;
-  // }
+  get approveMember(): string {
+    return this.basePath + FileRequest.approveMember;
+  }
 
   // get requestEnrollment(): string {
   //   return this.basePath + FileRequest.requestEnrollment;

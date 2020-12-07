@@ -69,7 +69,18 @@
         </td>
         <td>{{ user.email }}</td>
         <td>{{ user.status }}</td>
-        <td>{{ user.membershipStatus }}</td>
+        <td [class.approve]="user.membershipStatus === 'Waiting'">
+          {{ user.membershipStatus }}
+          <button
+            *ngIf="user.membershipStatus === 'Waiting'"
+            (click)="approve(user)"
+            class="approve-btn"
+            mat-raised-button
+            color="primary"
+          >
+            Approve
+          </button>
+        </td>
         <td>{{ user.from }}</td>
         <td>{{ !!!user.to ? "Present" : user.to }}</td>
       </tr>
