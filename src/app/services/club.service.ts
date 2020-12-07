@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { Club } from './../models/club';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { filter, map } from 'rxjs/operators';
 })
 export class ClubService {
 
-  constructor(private http: HttpClient, private path: PathRequester) { }
+  constructor(private http: HttpClient, private path: PathRequester, private authService: AuthService) { }
 
   getAllClubs$(): Observable<[Club]> {
     return this.http.post<[Club]>(this.path.getAllClubs, {});
@@ -36,6 +37,19 @@ export class ClubService {
     });
   }
 
+  enroll(clubID: string): void {
+    const userID = this.authService.user.id;
+    let body = new HttpParams();
+    body = body.set('userID', userID + '');
+    body = body.set('clubID', clubID);
+    body = body.set('fromDate', this.getDate(new Date()));
+    this.http.post(this.path.requestEnrollment, body).subscribe(res => {
+      if (res === 201) {
+        console.log('Member has requested an enrollment successfully');
+      }
+    });
+  }
+
   addMember(userID: string, clubID: string): void {
     let body = new HttpParams();
     body = body.set('userID', userID);
@@ -43,7 +57,7 @@ export class ClubService {
     body = body.set('fromDate', this.getDate(new Date()));
     this.http.post(this.path.addMemberToClub, body).subscribe(res => {
       if (res === 201) {
-        console.log('Club has been added successfully');
+        console.log('Student has enrolled successfully');
       }
     });
   }

@@ -12,7 +12,8 @@ enum FileRequest {
   getAllUsers = 'getAllUsers.php',
   getClubMembers = 'getClubMembers.php',
   getClubAdmins = 'getClubAdmins.php',
-  addMemberToClub = 'addMemberToClub.php'
+  addMemberToClub = 'addMemberToClub.php',
+  requestEnrollment = 'requestEnrollment.php'
 }
 
 export class PathRequester {
@@ -73,4 +74,26 @@ export class PathRequester {
   get addMemberToClub(): string {
     return this.basePath + FileRequest.addMemberToClub;
   }
+
+  get requestEnrollment(): string {
+    return this.basePath + FileRequest.requestEnrollment;
+  }
+
+  // get requestEnrollment(): string {
+  //   return this.basePath + FileRequest.requestEnrollment;
+  // }
+
+  // get requestEnrollment(): string {
+  //   return this.basePath + FileRequest.requestEnrollment;
+  // }
+
+  // get requestEnrollment(): string {
+  //   return this.basePath + FileRequest.requestEnrollment;
+  // }
+
+  // get requestEnrollment(): string {
+  //   return this.basePath + FileRequest.requestEnrollment;
+  // }
+
+
 }
