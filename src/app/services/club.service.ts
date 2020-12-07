@@ -70,6 +70,15 @@ export class ClubService {
     return this.http.post(this.path.approveMember, body);
   }
 
+  changeRole(userID: string, clubID: string, role: string): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('userID', userID);
+    body = body.set('clubID', clubID);
+    body = body.set('toDate', this.getDate(new Date()));
+    body = body.set('role', role);
+    return this.http.post(this.path.changeRole, body);
+  }
+
   getDate(d: Date): string {
     // tslint:disable-next-line:variable-name
     const date_ob = d;

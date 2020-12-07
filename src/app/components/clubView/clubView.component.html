@@ -38,6 +38,33 @@
 
 <app-addProject [club]="club"></app-addProject>
 
+<div class="actions">
+  <input
+    id="selected-user"
+    type="text"
+    [value]="selectedUser?.email"
+    disabled
+  />
+
+  <button
+    *ngIf="!!selectedUser"
+    mat-raised-button
+    color="primary"
+    (click)="promote('Secretary')"
+  >
+    Promote to Secretary
+  </button>
+
+  <button
+    *ngIf="!!selectedUser"
+    mat-raised-button
+    color="primary"
+    (click)="promote('President')"
+  >
+    Promote to President
+  </button>
+</div>
+
 <mat-card class="members">
   <table class="table table-striped">
     <thead>
@@ -55,13 +82,15 @@
     <tbody>
       <tr *ngFor="let user of members; index as i">
         <td class="action">
-          <!-- <button
-            (click)="onSelect(user)"
+          <button
+            (click)="
+              !!!selectedUser ? (selectedUser = user) : (selectedUser = null)
+            "
             mat-raised-button
-            [color]="selectedEmail === user.email ? 'primary' : 'accent'"
+            [color]="selectedUser === user ? 'primary' : 'accent'"
           >
-            {{ selectedEmail === user.email ? "Selected" : "Select" }}
-          </button> -->
+            {{ selectedUser === user ? "Selected" : "Select" }}
+          </button>
         </td>
         <th scope="row">{{ i + 1 }}</th>
         <td>
@@ -105,13 +134,15 @@
     <tbody>
       <tr *ngFor="let user of admins; index as i">
         <td class="action">
-          <!-- <button
-            (click)="onSelect(user)"
+          <button
+            (click)="
+              !!!selectedUser ? (selectedUser = user) : (selectedUser = null)
+            "
             mat-raised-button
-            [color]="selectedEmail === user.email ? 'primary' : 'accent'"
+            [color]="selectedUser === user ? 'primary' : 'accent'"
           >
-            {{ selectedEmail === user.email ? "Selected" : "Select" }}
-          </button> -->
+            {{ selectedUser === user ? "Selected" : "Select" }}
+          </button>
         </td>
         <th scope="row">{{ i + 1 }}</th>
         <td>

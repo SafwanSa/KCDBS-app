@@ -21,6 +21,7 @@ export class ClubViewComponent implements OnInit {
   selectedStatus = '';
   members: [User];
   admins: [User];
+  selectedUser: User;
 
   constructor(
     private clubService: ClubService,
@@ -65,6 +66,35 @@ export class ClubViewComponent implements OnInit {
         user.membershipStatus = 'Enrolled';
       }
     });
+  }
+
+  promote(role: string): void {
+    const user = this.selectedUser;
+    if (!user) { return; }
+    this.clubService.changeRole(user.id + '', this.club?.id + '', role).subscribe(res => {
+      if (res === 201) {
+        console.log('Student\'s role has been changed successfully');
+        this.admins.push(user);
+        user.to = new Date();
+      }
+    });
+  }
+
+  getDate(d: Date): string {
+    // tslint:disable-next-line:variable-name
+    const date_ob = d;
+
+    // adjust 0 before single digit date
+    const date = ('0' + date_ob.getDate()).slice(-2);
+
+    // current month
+    const month = ('0' + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    const year = date_ob.getFullYear();
+
+    // prints date in YYYY-MM-DD format
+    return (year + '-' + month + '-' + date);
   }
 
 }

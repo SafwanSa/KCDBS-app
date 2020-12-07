@@ -16,6 +16,7 @@ mat-card {
   color: red;
   position: relative;
 }
+
 .approve:hover .approve-btn {
   display: block;
   position: absolute;
@@ -23,4 +24,13 @@ mat-card {
   top: 0;
   right: 0;
   bottom: 0;
+}
+
+.actions {
+  width: 100%;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-top: 1rem;
+  text-align: center;
 }
