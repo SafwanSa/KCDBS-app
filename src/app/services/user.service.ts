@@ -1,3 +1,4 @@
+import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/models/user';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -10,7 +11,7 @@ import { filter, map } from 'rxjs/operators';
 })
 export class UserService {
 
-  constructor(private http: HttpClient, private path: PathRequester) { }
+  constructor(private http: HttpClient, private path: PathRequester, private authService: AuthService) { }
 
   getAllUsers$(): Observable<[User]> {
     return this.http.post<[User]>(this.path.getAllUsers, {});
@@ -26,6 +27,14 @@ export class UserService {
     let body = new HttpParams();
     body = body.set('clubID', clubID);
     return this.http.post<[User]>(this.path.getClubAdmins, body);
+  }
+
+  getStatus$(clubID: string): Observable<any> {
+    const userID = this.authService.user.id + '';
+    let body = new HttpParams();
+    body = body.set('clubID', clubID);
+    body = body.set('userID', userID);
+    return this.http.post(this.path.getStatus, body);
   }
 
 }

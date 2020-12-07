@@ -36,4 +36,28 @@
   <p class="description-title">Description</p>
   <p class="description">{{ club.description }}</p>
 </mat-card>
-<button (click)="enroll()" mat-raised-button>Request Enrollment</button>
+<button
+  (click)="
+    status === 'Not Enrolled'
+      ? enroll()
+      : status === 'Waiting'
+      ? exitClub()
+      : exitClub()
+  "
+  mat-raised-button
+  [color]="
+    status === 'Not Enrolled'
+      ? 'primary'
+      : status === 'Waiting'
+      ? 'accent'
+      : 'warn'
+  "
+>
+  {{
+    status === "Not Enrolled"
+      ? "Enroll"
+      : status === "Waiting"
+      ? "Waiting For Approval"
+      : "Terminate Membership"
+  }}
+</button>
