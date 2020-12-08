@@ -16,7 +16,8 @@ enum FileRequest {
   requestEnrollment = 'requestEnrollment.php',
   approveMember = 'approveMember.php',
   changeRole = 'changeRole.php',
-  getStatus = 'getStatus.php'
+  getStatus = 'getStatus.php',
+  terminateMembership = 'terminateMembership.php'
 }
 
 export class PathRequester {
@@ -94,9 +95,9 @@ export class PathRequester {
     return this.basePath + FileRequest.getStatus;
   }
 
-  // get requestEnrollment(): string {
-  //   return this.basePath + FileRequest.requestEnrollment;
-  // }
+  get terminateMembership(): string {
+    return this.basePath + FileRequest.terminateMembership;
+  }
 
 
 }

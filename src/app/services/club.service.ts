@@ -37,17 +37,13 @@ export class ClubService {
     });
   }
 
-  enroll(clubID: string): void {
+  enroll(clubID: string): Observable<any> {
     const userID = this.authService.user.id;
     let body = new HttpParams();
     body = body.set('userID', userID + '');
     body = body.set('clubID', clubID);
     body = body.set('fromDate', this.getDate(new Date()));
-    this.http.post(this.path.requestEnrollment, body).subscribe(res => {
-      if (res === 201) {
-        console.log('Member has requested an enrollment successfully');
-      }
-    });
+    return this.http.post(this.path.requestEnrollment, body);
   }
 
   addMember(userID: string, clubID: string): void {
@@ -62,6 +58,14 @@ export class ClubService {
     });
   }
 
+  exitClub(clubID: number): Observable<any> {
+    const userID = this.authService.user.id;
+    let body = new HttpParams();
+    body = body.set('userID', userID + '');
+    body = body.set('clubID', clubID + '');
+    return this.http.post(this.path.terminateMembership, body);
+  }
+
   approveMember(userID: string, clubID: string): Observable<any> {
     let body = new HttpParams();
     body = body.set('userID', userID);
@@ -74,7 +78,7 @@ export class ClubService {
     let body = new HttpParams();
     body = body.set('userID', userID);
     body = body.set('clubID', clubID);
-    body = body.set('toDate', this.getDate(new Date()));
+    body = body.set('fromDate', this.getDate(new Date()));
     body = body.set('role', role);
     return this.http.post(this.path.changeRole, body);
   }

@@ -37,11 +37,12 @@
   <p class="description">{{ club.description }}</p>
 </mat-card>
 <button
+  *ngIf="status !== 'President' && status !== 'Secretary'"
   (click)="
     status === 'Not Enrolled'
       ? enroll()
       : status === 'Waiting'
-      ? exitClub()
+      ? O()
       : exitClub()
   "
   mat-raised-button

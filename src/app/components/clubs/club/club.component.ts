@@ -21,20 +21,33 @@ export class ClubComponent implements OnInit {
   }
 
   enroll(): void {
-    this.clubService.enroll(this.club.id + '');
-    this.checkStatus();
+    this.clubService.enroll(this.club.id + '').subscribe(res => {
+      if (res === 201) {
+        console.log('Member has requested an enrollment successfully');
+        this.checkStatus();
+      }
+    });
   }
 
-  exitClub() {
-
+  exitClub(): void {
+    this.clubService.exitClub(this.club.id).subscribe(res => {
+      if (res === 201) {
+        console.log('Member has exited the club successfully');
+        this.checkStatus();
+      }
+    });
   }
 
   checkStatus(): void {
     this.userService.getStatus$(this.club.id + '').subscribe(res => {
-      if (res !== 404) {
+      if (res === 333) {
+        this.status = 'Not Enrolled';
+      } else {
         this.status = res;
       }
     });
   }
+
+  O(): void { }
 
 }
