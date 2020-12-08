@@ -74,6 +74,8 @@ export class ClubViewComponent implements OnInit {
     this.clubService.changeRole(user.id + '', this.club?.id + '', role).subscribe(res => {
       if (res === 201) {
         console.log('Student\'s role has been changed successfully');
+        const index = this.members.indexOf(user);
+        this.members.splice(index, 1);
         this.admins.push(user);
         user.to = new Date();
       }
