@@ -56,9 +56,23 @@
         Promote to President
       </button>
 
-      <button *ngIf="!!selectedUser" mat-raised-button color="primary">
+      <button
+        *ngIf="!!selectedUser"
+        mat-raised-button
+        color="primary"
+        (click)="assignWorker(selectedProject)"
+      >
         Assign to project
       </button>
+
+      <mat-form-field appearance="legacy">
+        <mat-label>Select a Project</mat-label>
+        <mat-select #selectedProject>
+          <mat-option *ngFor="let project of projects" [value]="project.id">{{
+            project.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
 
     <mat-card class="members">

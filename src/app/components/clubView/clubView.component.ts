@@ -82,6 +82,17 @@ export class ClubViewComponent implements OnInit {
     });
   }
 
+  assignWorker(event): void {
+    this.projectService.addMemberToProject$(this.selectedUser.id, event.value).subscribe(res => {
+      if (res === 201) {
+        console.log('Member added successfully');
+        event.value = null;
+        this.selectedUser = null;
+      }
+    });
+
+  }
+
   getDate(d: Date): string {
     // tslint:disable-next-line:variable-name
     const date_ob = d;
