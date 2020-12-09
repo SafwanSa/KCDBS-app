@@ -1,0 +1,21 @@
+<!-- <a [routerLink]="['/club', club.id + '']"> -->
+<mat-card [routerLink]="['/project', project.id + '']">
+  <img
+    class="card-img"
+    src="../../../../assets/images/project-images/image 2.png"
+    alt=""
+  />
+
+  <div class="section">
+    <p class="name">{{ project.name }}</p>
+  </div>
+
+  <div class="section">
+    <p class="status">{{ project.status }}</p>
+  </div>
+
+  <div class="spacer"></div>
+  <p class="description-title">Description</p>
+  <p class="description">{{ project.description }}</p>
+</mat-card>
+<button mat-raised-button [color]="'primary'">Volunteer</button>

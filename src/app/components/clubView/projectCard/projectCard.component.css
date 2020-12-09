@@ -1,0 +1,55 @@
+mat-card {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  /* padding: 10px; */
+  width: 270px;
+  height: 360px;
+  border-radius: 5px;
+  margin: 0.5rem 0 0rem 0rem;
+  position: relative;
+  background: white;
+  color: #484848;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.card-img {
+  width: 80%;
+  position: relative;
+  left: 50%;
+  transform: translate(-50%, 0);
+  margin-bottom: 12px;
+}
+.section {
+  display: flex;
+}
+
+.icon {
+  display: none;
+  width: 20px;
+}
+
+.name,
+.status,
+.department {
+  font-size: larger;
+}
+
+.description-title {
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
+.description {
+  font-size: smaller;
+  color: #929292;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+button {
+  width: 100%;
+}

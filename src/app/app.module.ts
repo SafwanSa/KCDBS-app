@@ -1,3 +1,5 @@
+import { ProjectComponent } from './components/project/project.component';
+import { ProjectCardComponent } from './components/clubView/projectCard/projectCard.component';
 import { UsersComponent } from './components/users/users.component';
 import { UserService } from './services/user.service';
 import { DepartmentService } from './services/department.service';
@@ -55,7 +57,9 @@ import { MatMenuModule } from '@angular/material/menu';
     ClubViewComponent,
     AddClubComponent,
     AddProjectComponent,
-    UsersComponent
+    UsersComponent,
+    ProjectCardComponent,
+    ProjectComponent
   ],
   imports: [
     BrowserModule,
