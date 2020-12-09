@@ -2,6 +2,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from './../../services/project.service';
 import { Project, ProjectStatusType } from './../../models/project';
 import { Component, OnInit } from '@angular/core';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-project',
@@ -13,6 +14,8 @@ export class ProjectComponent implements OnInit {
   project: Project;
   projectStatusTypes = ProjectStatusType.values();
   selectedStatus = '';
+  workers: [User];
+  selectedUser: User;
 
   constructor(private projectService: ProjectService, private route: ActivatedRoute, private router: Router) { }
 
@@ -24,6 +27,9 @@ export class ProjectComponent implements OnInit {
         return;
       }
       this.project = project;
+      this.projectService.getProjectWorkers$(this.project.id).subscribe(workers => {
+        this.workers = workers;
+      });
     });
   }
 
