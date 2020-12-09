@@ -1,3 +1,4 @@
+import { User } from './../models/user';
 import { Project, ProjectType } from './../models/project';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
@@ -43,19 +44,25 @@ export class ProjectService {
     });
   }
 
-  addMemberToProject(userID: number, projectID: number): Observable<any> {
+  addMemberToProject$(userID: number, projectID: number): Observable<any> {
     let body = new HttpParams();
     body = body.set('projID', projectID + '');
     body = body.set('userID', userID + '');
     body = body.set('fromDate', this.getDate(new Date()) + '');
-    return this.http.post<Project>(this.path.addMemberToProject, body);
+    return this.http.post(this.path.addMemberToProject, body);
   }
 
-  promoteToLeader(userID: number, projectID: number): Observable<any> {
+  promoteToLeader$(userID: number, projectID: number): Observable<any> {
     let body = new HttpParams();
     body = body.set('projID', projectID + '');
     body = body.set('userID', userID + '');
-    return this.http.post<Project>(this.path.promoteToLeader, body);
+    return this.http.post(this.path.promoteToLeader, body);
+  }
+
+  getProjectWorkers$(projectID: number): Observable<[User]> {
+    let body = new HttpParams();
+    body = body.set('projID', projectID + '');
+    return this.http.post<[User]>(this.path.getProjectWorkers, body);
   }
 
   getDate(d: Date): string {
