@@ -51,6 +51,13 @@ export class ProjectService {
     return this.http.post<Project>(this.path.addMemberToProject, body);
   }
 
+  promoteToLeader(userID: number, projectID: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('projID', projectID + '');
+    body = body.set('userID', userID + '');
+    return this.http.post<Project>(this.path.promoteToLeader, body);
+  }
+
   getDate(d: Date): string {
     // tslint:disable-next-line:variable-name
     const date_ob = d;
