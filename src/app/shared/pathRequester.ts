@@ -20,7 +20,8 @@ enum FileRequest {
   terminateMembership = 'terminateMembership.php',
   addMemberToProject = 'addMemberToProject.php',
   promoteToLeader = 'promoteToLeader.php',
-  getProjectWorkers = 'getProjectWorkers.php'
+  getProjectWorkers = 'getProjectWorkers.php',
+  getProject = 'getProject.php'
 }
 
 export class PathRequester {
@@ -114,9 +115,9 @@ export class PathRequester {
     return this.basePath + FileRequest.getProjectWorkers;
   }
 
-  // get terminateMembership(): string {
-  //   return this.basePath + FileRequest.terminateMembership;
-  // }
+  get getProject(): string {
+    return this.basePath + FileRequest.getProject;
+  }
 
   // get terminateMembership(): string {
   //   return this.basePath + FileRequest.terminateMembership;

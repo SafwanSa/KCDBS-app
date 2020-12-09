@@ -1,3 +1,4 @@
+import { ProjectComponent } from './components/project/project.component';
 import { UsersComponent } from './components/users/users.component';
 import { AddClubComponent } from './components/addClub/addClub.component';
 import { ClubViewComponent } from './components/clubView/clubView.component';
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'clubs', component: ClubsComponent },
   { path: 'club/:id', component: ClubViewComponent },
+  { path: 'project/:id', component: ProjectComponent },
   { path: 'addClub', component: AddClubComponent },
   { path: 'users', component: UsersComponent },
   { path: '', component: HomeComponent }

@@ -6,13 +6,13 @@
 >
   {{ type }}
 </button>
-<p>{{ project.name }}</p>
-<p>{{ project.description }}</p>
-<p>{{ project.type }}</p>
-<p>{{ project.startDate }}</p>
-<p>{{ project.endDate }}</p>
-<p>{{ selectedStatus === "" ? project.status : selectedStatus }}</p>
-<div *ngFor="let resource of project.resources" style="background: red">
+<p>{{ project?.name }}</p>
+<p>{{ project?.description }}</p>
+<p>{{ project?.type }}</p>
+<p>{{ project?.startDate }}</p>
+<p>{{ project?.endDate }}</p>
+<p>{{ selectedStatus === "" ? project?.status : selectedStatus }}</p>
+<div *ngFor="let resource of project?.resources" style="background: red">
   <p>{{ resource.name }}</p>
   <p>{{ resource.type }}</p>
   <p>{{ resource.description }}</p>
