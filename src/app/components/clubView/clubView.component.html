@@ -1,13 +1,164 @@
-<mat-card>
-  <p>{{ club?.name }}</p>
-  <p>{{ club?.description }}</p>
-  <p>{{ club?.status }}</p>
-  <p>{{ !!club?.phone ? club?.phone : "No Phone" }}</p>
-  <p>{{ club?.department.name }}</p>
-  <p>{{ club?.department.email }}</p>
-  <p>{{ club?.department.phone }}</p>
-  <!-- <p>{{ club.projects?.length }}</p> -->
-</mat-card>
+<div class="root-container">
+  <div class="left-side">
+    <mat-card>
+      <p>{{ club?.name }}</p>
+      <p>{{ club?.description }}</p>
+      <p>{{ club?.status }}</p>
+      <p>{{ !!club?.phone ? club?.phone : "No Phone" }}</p>
+      <p>{{ club?.department.name }}</p>
+      <p>{{ club?.department.email }}</p>
+      <p>{{ club?.department.phone }}</p>
+      <!-- <p>{{ club.projects?.length }}</p> -->
+    </mat-card>
+
+    <app-addProject [club]="club"></app-addProject>
+  </div>
+
+  <div class="right-side">
+    <h1>Projects</h1>
+    <div class="container mt-4">
+      <div class="row">
+        <div *ngFor="let project of projects" class="col-auto mb-3">
+          <app-projectCard [project]="project"></app-projectCard>
+        </div>
+      </div>
+    </div>
+
+    <mat-error *ngIf="!!!projects">There is no projects in this club</mat-error>
+
+    <hr />
+
+    <h1>Admins & Members</h1>
+
+    <div class="actions">
+      <input
+        id="selected-user"
+        type="text"
+        [value]="!!selectedUser ? selectedUser?.email : 'User'"
+        disabled
+      />
+
+      <button
+        *ngIf="!!selectedUser"
+        mat-raised-button
+        color="primary"
+        (click)="promote('Secretary')"
+      >
+        Promote to Secretary
+      </button>
+
+      <button
+        *ngIf="!!selectedUser"
+        mat-raised-button
+        color="primary"
+        (click)="promote('President')"
+      >
+        Promote to President
+      </button>
+
+      <button *ngIf="!!selectedUser" mat-raised-button color="primary">
+        Assign to project
+      </button>
+    </div>
+
+    <mat-card class="members">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Student Status</th>
+            <th scope="col">Membership Status</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of members; index as i">
+            <td class="action">
+              <button
+                (click)="
+                  !!!selectedUser
+                    ? (selectedUser = user)
+                    : (selectedUser = null)
+                "
+                mat-raised-button
+                [color]="selectedUser === user ? 'primary' : 'accent'"
+              >
+                {{ selectedUser === user ? "Selected" : "Select" }}
+              </button>
+            </td>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ user.firstName + " " + user.lastName }}
+            </td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.status }}</td>
+            <td [class.approve]="user.membershipStatus === 'Waiting'">
+              {{ user.membershipStatus }}
+              <button
+                *ngIf="user.membershipStatus === 'Waiting'"
+                (click)="approve(user)"
+                class="approve-btn"
+                mat-raised-button
+                color="primary"
+              >
+                Approve
+              </button>
+            </td>
+            <td>{{ user.from }}</td>
+            <td>{{ !!!user.to ? "Present" : user.to }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+
+    <mat-card class="members">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Student Status</th>
+            <th scope="col">Role</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of admins; index as i">
+            <td class="action">
+              <button
+                (click)="
+                  !!!selectedUser
+                    ? (selectedUser = user)
+                    : (selectedUser = null)
+                "
+                mat-raised-button
+                [color]="selectedUser === user ? 'primary' : 'accent'"
+              >
+                {{ selectedUser === user ? "Selected" : "Select" }}
+              </button>
+            </td>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ user.firstName + " " + user.lastName }}
+            </td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.status }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.from }}</td>
+            <td>{{ !!!user.to ? "Present" : user.to }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+  </div>
+</div>
 
 <!-- <mat-card *ngFor="let project of projects">
   <button
@@ -33,134 +184,3 @@
     <p>{{ resource.to }}</p>
   </div>
 </mat-card> -->
-<div class="container mt-4">
-  <div class="row">
-    <div *ngFor="let project of projects" class="col-auto mb-3">
-      <app-projectCard [project]="project"></app-projectCard>
-    </div>
-  </div>
-</div>
-
-<mat-error *ngIf="!!!projects">There is no projects in this club</mat-error>
-
-<app-addProject [club]="club"></app-addProject>
-
-<div class="actions">
-  <input
-    id="selected-user"
-    type="text"
-    [value]="selectedUser?.email"
-    disabled
-  />
-
-  <button
-    *ngIf="!!selectedUser"
-    mat-raised-button
-    color="primary"
-    (click)="promote('Secretary')"
-  >
-    Promote to Secretary
-  </button>
-
-  <button
-    *ngIf="!!selectedUser"
-    mat-raised-button
-    color="primary"
-    (click)="promote('President')"
-  >
-    Promote to President
-  </button>
-</div>
-
-<mat-card class="members">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Student Status</th>
-        <th scope="col">Membership Status</th>
-        <th scope="col">From</th>
-        <th scope="col">To</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of members; index as i">
-        <td class="action">
-          <button
-            (click)="
-              !!!selectedUser ? (selectedUser = user) : (selectedUser = null)
-            "
-            mat-raised-button
-            [color]="selectedUser === user ? 'primary' : 'accent'"
-          >
-            {{ selectedUser === user ? "Selected" : "Select" }}
-          </button>
-        </td>
-        <th scope="row">{{ i + 1 }}</th>
-        <td>
-          {{ user.firstName + " " + user.lastName }}
-        </td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.status }}</td>
-        <td [class.approve]="user.membershipStatus === 'Waiting'">
-          {{ user.membershipStatus }}
-          <button
-            *ngIf="user.membershipStatus === 'Waiting'"
-            (click)="approve(user)"
-            class="approve-btn"
-            mat-raised-button
-            color="primary"
-          >
-            Approve
-          </button>
-        </td>
-        <td>{{ user.from }}</td>
-        <td>{{ !!!user.to ? "Present" : user.to }}</td>
-      </tr>
-    </tbody>
-  </table>
-</mat-card>
-
-<mat-card class="members">
-  <table class="table table-striped">
-    <thead>
-      <tr>
-        <th scope="col"></th>
-        <th scope="col">#</th>
-        <th scope="col">Name</th>
-        <th scope="col">Email</th>
-        <th scope="col">Student Status</th>
-        <th scope="col">Role</th>
-        <th scope="col">From</th>
-        <th scope="col">To</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of admins; index as i">
-        <td class="action">
-          <button
-            (click)="
-              !!!selectedUser ? (selectedUser = user) : (selectedUser = null)
-            "
-            mat-raised-button
-            [color]="selectedUser === user ? 'primary' : 'accent'"
-          >
-            {{ selectedUser === user ? "Selected" : "Select" }}
-          </button>
-        </td>
-        <th scope="row">{{ i + 1 }}</th>
-        <td>
-          {{ user.firstName + " " + user.lastName }}
-        </td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.status }}</td>
-        <td>{{ user.role }}</td>
-        <td>{{ user.from }}</td>
-        <td>{{ !!!user.to ? "Present" : user.to }}</td>
-      </tr>
-    </tbody>
-  </table>
-</mat-card>

@@ -1,5 +1,17 @@
+.root-container {
+  display: flex;
+}
+
+.left-side {
+  width: 20%;
+  background-color: lightgray;
+}
+
+.right-side {
+  width: 80%;
+}
+
 mat-card {
-  margin: 1rem;
 }
 
 .members {
@@ -28,9 +40,15 @@ mat-card {
 
 .actions {
   width: 100%;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%, 0);
-  margin-top: 1rem;
-  text-align: center;
+  padding: 2rem;
+  background-color: gray;
+}
+
+.actions input {
+  width: 20%;
+  padding: 0.5rem;
+}
+
+.actions button {
+  margin: 0 1rem;
 }
