@@ -71,6 +71,13 @@ export class ProjectService {
     return this.http.post<[User]>(this.path.getProjectWorkers, body);
   }
 
+  getWorkStatus$(userID: number, projectID: number): Observable<any> {
+    let body = new HttpParams();
+    body = body.set('projID', projectID + '');
+    body = body.set('userID', userID + '');
+    return this.http.post<string>(this.path.getWorkStatus, body);
+  }
+
   getDate(d: Date): string {
     // tslint:disable-next-line:variable-name
     const date_ob = d;

@@ -39,4 +39,14 @@ export class ProjectComponent implements OnInit {
     });
   }
 
+  promote(): void {
+    this.projectService.promoteToLeader$(this.selectedUser.id, this.project.id).subscribe(res => {
+      if (res === 201) {
+        console.log('User promoted successfully');
+        this.selectedUser.role = 'Leader';
+        this.selectedUser = null;
+      }
+    });
+  }
+
 }

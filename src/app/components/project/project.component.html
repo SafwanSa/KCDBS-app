@@ -1,4 +1,4 @@
-<button
+<!-- <button
   (click)="onSelect(project.id, type)"
   mat-raised-button
   color="primary"
@@ -60,4 +60,114 @@
       </tr>
     </tbody>
   </table>
-</mat-card>
+</mat-card> -->
+
+<div class="root-container">
+  <div class="left-side">
+    <p class="name">{{ project?.name }}</p>
+    <p class="description">{{ project?.description }}</p>
+    <p class="type">{{ project?.type }}</p>
+    <p class="status">
+      {{ selectedStatus === "" ? project?.status : selectedStatus }}
+    </p>
+    <p class="date">From: {{ project?.startDate }}</p>
+    <p class="date">
+      To: {{ !!project?.endDate ? project?.endDate : "Present" }}
+    </p>
+  </div>
+
+  <div class="right-side">
+    <h1 class="resources-h">Resources</h1>
+    <mat-card class="members">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Type</th>
+            <th scope="col">Description</th>
+            <th scope="col">Status</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let resource of project?.resources; index as i">
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ resource.name }}
+            </td>
+            <td>{{ resource.type }}</td>
+            <td>{{ resource.description }}</td>
+            <td>{{ resource.status }}</td>
+            <td>{{ resource.from }}</td>
+            <td>{{ !!!resource.to ? "Present" : resource.to }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+
+    <hr />
+
+    <h1 class="workers-h">Workers</h1>
+    <div class="actions">
+      <input
+        id="selected-user"
+        type="text"
+        [value]="!!selectedUser ? selectedUser?.email : 'User'"
+        disabled
+      />
+
+      <button
+        *ngIf="!!selectedUser"
+        mat-raised-button
+        color="primary"
+        (click)="promote()"
+      >
+        Promote to Leader
+      </button>
+    </div>
+    <mat-card class="members">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Role</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of workers; index as i">
+            <td class="action">
+              <button
+                (click)="
+                  !!!selectedUser
+                    ? (selectedUser = user)
+                    : (selectedUser = null)
+                "
+                mat-raised-button
+                [color]="selectedUser === user ? 'primary' : 'accent'"
+              >
+                {{ selectedUser === user ? "Selected" : "Select" }}
+              </button>
+            </td>
+            <th scope="row">{{ i + 1 }}</th>
+            <td>
+              {{ user.firstName + " " + user.lastName }}
+            </td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.role }}</td>
+            <td>{{ user.from }}</td>
+            <td>{{ !!!user.to ? "Present" : user.to }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </mat-card>
+  </div>
+</div>

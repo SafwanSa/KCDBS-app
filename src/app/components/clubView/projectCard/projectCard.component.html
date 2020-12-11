@@ -18,4 +18,11 @@
   <p class="description-title">Description</p>
   <p class="description">{{ project.description }}</p>
 </mat-card>
-<button mat-raised-button [color]="'primary'">Volunteer</button>
+<button
+  *ngIf="!!!status"
+  mat-raised-button
+  [color]="'primary'"
+  (click)="volunteer()"
+>
+  Volunteer
+</button>
