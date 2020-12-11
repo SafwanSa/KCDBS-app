@@ -36,18 +36,14 @@ export class ProjectService {
     return this.http.post<[ProjectType]>(this.path.getAllProjectTypes, {});
   }
 
-  addProject(project: any): void {
+  addProject$(project: any): Observable<any> {
     let body = new HttpParams();
     // tslint:disable-next-line:forin
     for (const key in project) {
       const value = project[key];
       body = body.set(key, value + '');
     }
-    this.http.post(this.path.addProject, body).subscribe(res => {
-      if (res === 201) {
-        console.log('Project has been added successfully');
-      }
-    });
+    return this.http.post(this.path.addProject, body);
   }
 
   addMemberToProject$(userID: number, projectID: number): Observable<any> {

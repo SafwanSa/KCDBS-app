@@ -54,10 +54,15 @@ export class AddProjectComponent implements OnInit {
       description: this.description.value,
       typeID: this.typeID.value === '' ? null : this.typeID.value,
       clubID: this.club.id, // WHERE TO GET?
-      startDate: '2020-12-12'
+      startDate: this.getDate(new Date())
     };
-    this.projectService.addProject(json);
-    this.loading = false;
+    this.projectService.addProject$(json).subscribe(res => {
+      if (res === 201) {
+        console.log('Project has been added successfully');
+        this.form.reset();
+      }
+      this.loading = false;
+    });
   }
 
   getErrorMessage(): string {
@@ -65,6 +70,23 @@ export class AddProjectComponent implements OnInit {
       || this.description.hasError('required') || this.typeID.hasError('required')) {
       return 'You must enter a value';
     }
+  }
+
+  getDate(d: Date): string {
+    // tslint:disable-next-line:variable-name
+    const date_ob = d;
+
+    // adjust 0 before single digit date
+    const date = ('0' + date_ob.getDate()).slice(-2);
+
+    // current month
+    const month = ('0' + (date_ob.getMonth() + 1)).slice(-2);
+
+    // current year
+    const year = date_ob.getFullYear();
+
+    // prints date in YYYY-MM-DD format
+    return (year + '-' + month + '-' + date);
   }
 
 }
