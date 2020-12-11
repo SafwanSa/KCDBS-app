@@ -8,7 +8,18 @@
       <p>{{ club?.department.name }}</p>
       <p>{{ club?.department.email }}</p>
       <p>{{ club?.department.phone }}</p>
-      <!-- <p>{{ club.projects?.length }}</p> -->
+      <p
+        *ngIf="
+          currentUser.type === 'System Admin' ||
+          status === 'President' ||
+          status === 'Secretary'
+        "
+      >
+        Num. Of Projects: {{ projects?.length }}
+      </p>
+      <p *ngIf="currentUser.type === 'System Admin'">
+        Num. Of Members: {{ members?.length + admins?.length }}
+      </p>
     </mat-card>
 
     <app-addProject
@@ -93,10 +104,7 @@
         Assign to project
       </button>
 
-      <mat-form-field
-        appearance="legacy"
-        *ngIf="status === 'President' || status === 'Secretary'"
-      >
+      <mat-form-field appearance="legacy">
         <mat-label>Select a Project</mat-label>
         <mat-select #selectedProject>
           <mat-option *ngFor="let project of projects" [value]="project.id">{{
