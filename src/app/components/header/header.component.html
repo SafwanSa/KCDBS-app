@@ -25,8 +25,9 @@
     </div>
 
     <div class="right-side" *ngIf="user && !isProcessing">
-      <a [routerLink]="['profile', user.id]">Profile</a>
-      <button class="btn btn-danger" (click)="signOut()">Logout</button>
+      <button mat-raised-button color="accent" (click)="signOut()">
+        Logout
+      </button>
     </div>
   </div>
 </mat-toolbar>

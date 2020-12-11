@@ -1,6 +1,6 @@
 <div class="root-container">
   <mat-card class="card">
-    <mat-card-title class="card-title">Welcome Back</mat-card-title>
+    <mat-card-title class="card-title">Add Club</mat-card-title>
     <form [formGroup]="form" (ngSubmit)="onSubmit()">
       <div class="email">
         <mat-form-field appearance="legacy">
@@ -72,7 +72,7 @@
         color="primary"
         [disabled]="description.invalid || name.invalid"
       >
-        Login
+        Add
       </button>
     </form>
   </mat-card>
