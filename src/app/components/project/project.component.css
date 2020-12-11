@@ -30,3 +30,7 @@ mat-card {
 .actions {
   margin: 1rem 0;
 }
+
+.left-side button {
+  margin: 1rem;
+}

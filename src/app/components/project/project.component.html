@@ -74,6 +74,17 @@
     <p class="date">
       To: {{ !!project?.endDate ? project?.endDate : "Present" }}
     </p>
+
+    <div *ngIf="status === 'President' || status === 'Secretary'">
+      <button
+        (click)="onSelect(project.id, type)"
+        mat-raised-button
+        color="primary"
+        *ngFor="let type of projectStatusTypes"
+      >
+        {{ type }}
+      </button>
+    </div>
   </div>
 
   <div class="right-side">
@@ -113,6 +124,7 @@
     <div class="actions">
       <input
         id="selected-user"
+        *ngIf="status === 'President' || status === 'Secretary'"
         type="text"
         [value]="!!selectedUser ? selectedUser?.email : 'User'"
         disabled
@@ -145,6 +157,7 @@
           <tr *ngFor="let user of workers; index as i">
             <td class="action">
               <button
+                *ngIf="status === 'President' || status === 'Secretary'"
                 (click)="
                   !!!selectedUser
                     ? (selectedUser = user)

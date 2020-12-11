@@ -23,6 +23,7 @@ export class ClubViewComponent implements OnInit {
   members: [User];
   admins: [User];
   selectedUser: User;
+  status: string;
 
   constructor(
     private clubService: ClubService,
@@ -45,6 +46,9 @@ export class ClubViewComponent implements OnInit {
       this.club = clubAndProjects[0];
       this.projects = clubAndProjects[1];
       if (this.projects.length === 0) { this.projects = null; }
+
+      this.checkStatus();
+
       this.userService.getClubMembers$(this.club?.id + '').subscribe(members => {
         this.members = members;
       });
@@ -80,6 +84,18 @@ export class ClubViewComponent implements OnInit {
         this.members.splice(index, 1);
         this.admins.push(user);
         user.to = new Date();
+      }
+    });
+  }
+
+  checkStatus(): void {
+    this.userService.getStatus$(this.club.id + '').subscribe(res => {
+      console.log(res);
+
+      if (res === 333) {
+        this.status = 'Not Enrolled';
+      } else {
+        this.status = res;
       }
     });
   }

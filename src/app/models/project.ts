@@ -22,7 +22,7 @@ export class Project {
   id: number;
   name: string;
   type: string;
-  // clubID: number;
+  clubID?: number;
   description: number;
   startDate: Date;
   endDate?: Date;

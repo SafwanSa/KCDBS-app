@@ -1,8 +1,10 @@
+import { UserService } from './../../services/user.service';
+import { User } from './../../models/user';
+import { AuthService } from './../../services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from './../../services/project.service';
 import { Project, ProjectStatusType } from './../../models/project';
 import { Component, OnInit } from '@angular/core';
-import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-project',
@@ -16,8 +18,14 @@ export class ProjectComponent implements OnInit {
   selectedStatus = '';
   workers: [User];
   selectedUser: User;
+  status: string;
 
-  constructor(private projectService: ProjectService, private route: ActivatedRoute, private router: Router) { }
+  constructor(
+    private projectService: ProjectService,
+    private route: ActivatedRoute,
+    private router: Router,
+    private userService: UserService
+  ) { }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
@@ -27,6 +35,7 @@ export class ProjectComponent implements OnInit {
         return;
       }
       this.project = project;
+      this.checkStatus();
       this.projectService.getProjectWorkers$(this.project.id).subscribe(workers => {
         this.workers = workers;
       });
@@ -45,6 +54,18 @@ export class ProjectComponent implements OnInit {
         console.log('User promoted successfully');
         this.selectedUser.role = 'Leader';
         this.selectedUser = null;
+      }
+    });
+  }
+
+  checkStatus(): void {
+    this.userService.getStatus$(this.project.clubID + '').subscribe(res => {
+      console.log(res);
+
+      if (res === 333) {
+        this.status = 'Not Enrolled';
+      } else {
+        this.status = res;
       }
     });
   }

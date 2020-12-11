@@ -11,7 +11,10 @@
       <!-- <p>{{ club.projects?.length }}</p> -->
     </mat-card>
 
-    <app-addProject [club]="club"></app-addProject>
+    <app-addProject
+      *ngIf="status === 'President' || status === 'Secretary'"
+      [club]="club"
+    ></app-addProject>
   </div>
 
   <div class="right-side">
@@ -28,9 +31,24 @@
 
     <hr />
 
-    <h1>Admins & Members</h1>
+    <h1
+      *ngIf="
+        status === 'President' ||
+        status === 'Secretary' ||
+        currentUser.type === 'System Admin'
+      "
+    >
+      Admins & Members
+    </h1>
 
-    <div class="actions">
+    <div
+      class="actions"
+      *ngIf="
+        status === 'President' ||
+        status === 'Secretary' ||
+        currentUser.type === 'System Admin'
+      "
+    >
       <input
         id="selected-user"
         type="text"
@@ -57,7 +75,9 @@
       </button>
 
       <button
-        *ngIf="!!selectedUser"
+        *ngIf="
+          (!!selectedUser && status === 'President') || status === 'Secretary'
+        "
         mat-raised-button
         color="primary"
         (click)="assignWorker(selectedProject)"
@@ -65,7 +85,10 @@
         Assign to project
       </button>
 
-      <mat-form-field appearance="legacy">
+      <mat-form-field
+        appearance="legacy"
+        *ngIf="status === 'President' || status === 'Secretary'"
+      >
         <mat-label>Select a Project</mat-label>
         <mat-select #selectedProject>
           <mat-option *ngFor="let project of projects" [value]="project.id">{{
@@ -75,7 +98,14 @@
       </mat-form-field>
     </div>
 
-    <mat-card class="members">
+    <mat-card
+      class="members"
+      *ngIf="
+        status === 'President' ||
+        status === 'Secretary' ||
+        currentUser.type === 'System Admin'
+      "
+    >
       <table class="table table-striped">
         <thead>
           <tr>
@@ -113,7 +143,11 @@
             <td [class.approve]="user.membershipStatus === 'Waiting'">
               {{ user.membershipStatus }}
               <button
-                *ngIf="user.membershipStatus === 'Waiting'"
+                *ngIf="
+                  user.membershipStatus === 'Waiting' ||
+                  status === 'President' ||
+                  status === 'Secretary'
+                "
                 (click)="approve(user)"
                 class="approve-btn"
                 mat-raised-button
@@ -129,7 +163,14 @@
       </table>
     </mat-card>
 
-    <mat-card class="members">
+    <mat-card
+      class="members"
+      *ngIf="
+        status === 'President' ||
+        status === 'Secretary' ||
+        currentUser.type === 'System Admin'
+      "
+    >
       <table class="table table-striped">
         <thead>
           <tr>
