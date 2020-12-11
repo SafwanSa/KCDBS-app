@@ -1,3 +1,4 @@
+import { AuthService } from './../../services/auth.service';
 import { UserService } from './../../services/user.service';
 import { User } from './../../models/user';
 import { ProjectService } from './../../services/project.service';
@@ -28,7 +29,8 @@ export class ClubViewComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private projectService: ProjectService,
-    private userService: UserService
+    private userService: UserService,
+    private authService: AuthService
   ) { }
 
   ngOnInit(): void {
@@ -91,6 +93,10 @@ export class ClubViewComponent implements OnInit {
       }
     });
 
+  }
+
+  get currentUser(): User {
+    return this.authService.user;
   }
 
   getDate(d: Date): string {

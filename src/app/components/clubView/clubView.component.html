@@ -39,7 +39,7 @@
       />
 
       <button
-        *ngIf="!!selectedUser"
+        *ngIf="!!selectedUser && currentUser.type === 'System Admin'"
         mat-raised-button
         color="primary"
         (click)="promote('Secretary')"
@@ -48,7 +48,7 @@
       </button>
 
       <button
-        *ngIf="!!selectedUser"
+        *ngIf="!!selectedUser && currentUser.type === 'System Admin'"
         mat-raised-button
         color="primary"
         (click)="promote('President')"

@@ -5,6 +5,12 @@
     </div>
   </div>
 </div>
-<button mat-raised-button color="warn" routerLink="/addClub" id="addClub">
+<button
+  *ngIf="user.type === 'System Admin'"
+  mat-raised-button
+  color="warn"
+  routerLink="/addClub"
+  id="addClub"
+>
   Add Club
 </button>

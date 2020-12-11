@@ -1,6 +1,6 @@
 <div class="dummy"></div>
 <mat-toolbar color="primary">
-  <a id="blog-name" href="../index.html"><span>KCDB</span>S</a>
+  <a id="blog-name" routerLink="/clubs"><span>KCDB</span>S</a>
   <span class="spacer"></span>
   <nav>
     <div class="nav-container">
@@ -10,7 +10,7 @@
       ></a>
     </div>
 
-    <div class="nav-container">
+    <div *ngIf="user?.type === 'System Admin'" class="nav-container">
       <a class="nav-option" routerLink="/users" routerLinkActive="active"
         >Users
         <div class="bar"></div
