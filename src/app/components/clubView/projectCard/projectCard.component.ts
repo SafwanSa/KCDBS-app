@@ -4,6 +4,7 @@ import { Project } from './../../../models/project';
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line:component-selector
   selector: 'app-projectCard',
   templateUrl: './projectCard.component.html',
   styleUrls: ['./projectCard.component.css']
