@@ -17,7 +17,15 @@
     ></app-addProject>
   </div>
 
-  <div class="right-side">
+  <div
+    class="right-side"
+    *ngIf="
+      status == 'Enrolled' ||
+      currentUser.type === 'System Admin' ||
+      status === 'President' ||
+      status === 'Secretary'
+    "
+  >
     <h1>Projects</h1>
     <div class="container mt-4">
       <div class="row">

@@ -24,6 +24,7 @@ export class ProjectCardComponent implements OnInit {
     this.projectService.addMemberToProject$(this.authService.user.id, this.project.id).subscribe(res => {
       if (res === 201) {
         console.log('User did volunteer successfully');
+        this.status = 'Worker';
       }
     });
   }
